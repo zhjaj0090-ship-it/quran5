@@ -54,39 +54,6 @@ const recitersList = [
   { names: ["بدر التركي"], url: "https://qurancdn.com" }
 ];
 
-// 2. صورة افتراضية في حال عدم توفر صورة للقارئ
-const DEFAULT_RECITER_AVATAR = "https://flaticon.com";
-
-// 3. دالة توحيد الحروف العربية (إزالة الهمزات والتشكيل)
-function normalizeArabic(text) {
-  return text
-    .trim()
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ة/g, "ه")
-    .replace(/ى/g, "ي")
-    .replace(/[\u064B-\u065F]/g, "");
-}
-
-// 4. دالة جلب رابط الصورة بالاسم (تدعم الاسم الكامل أو الجزئي)
-function getReciterImage(reciterName) {
-  if (!reciterName) return DEFAULT_RECITER_AVATAR;
-  const query = normalizeArabic(reciterName);
-
-  const found = recitersList.find(reciter =>
-    reciter.names.some(name => {
-      const normalized = normalizeArabic(name);
-      return normalized === query || normalized.includes(query);
-    })
-  );
-
-  return found ? found.url : DEFAULT_RECITER_AVATAR;
-}
-
-// أمثلة على الاستخدام:
-console.log(getReciterImage("احمد العجمي"));   // يعيد رابط العجمي رغم عدم وجود همزة
-console.log(getReciterImage("المنشاوي"));     // يعيد رابط المنشاوي
-console.log(getReciterImage("قارئ غير مسجل")); // يعيد الصورة الافتراضية
-
 
 
 
