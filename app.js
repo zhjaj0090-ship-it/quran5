@@ -102,6 +102,7 @@ const famousReciterImages = {
   "الجزائري": "https://static.qurancdn.com/images/reciters/120/yassin-al-jazaery-profile.jpeg"
 };
 
+
 // كاش لتخزين صور الـ 300 قارئ بسرعة فائقة
 const avatarCache = new Map();
 
